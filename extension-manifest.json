@@ -1,0 +1,69 @@
+{
+  "manifestVersion": 1,
+  "id": "cboroson-VSTS-LetsEncrypt",
+  "name": "Generate LetsEncrypt signed certificates and upload as secrets to Key Vault",
+  "version": "1.1.0",
+  "publisher": "cboroson",
+  "public": true,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Task to generate LetsEncrypt signed certificates and upload them as Base64-encoded secrets to Key Vault.",
+  "scopes": [
+    "vso.build",
+    "vso.serviceendpoint"
+  ],    
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "Key Vault",
+    "Secret",
+    "Configuration",
+    "Certificate"
+  ],
+  "content": {
+    "details": {
+      "path": "readme.md"
+    },
+    "license": {
+      "path": "VSTS-LetsEncrypt-extension/license.txt"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/cboroson/VSTS-LetsEncrypt"
+    },
+    "support": {
+      "uri": "https://github.com/cboroson/VSTS-LetsEncrypt"
+    }
+  },
+  "branding": {
+    "color": "rgb(36, 43, 50)",
+    "theme": "dark"
+  },
+  "icons": {
+    "default": "VSTS-LetsEncrypt-extension/images/secrets.png"
+  },
+  "files": [
+  {
+    "path": "VSTS-LetsEncrypt-release", "addressable": true
+  }
+],
+
+  "contributions": [
+    {
+      "id": "cboroson-VSTS-LetsEncrypt",
+      "type": "ms.vss-distributed-task.task",
+      "description": "Generate LetsEncrypt signed certificates and upload as secrets to Key Vault.",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "VSTS-LetsEncrypt-release"
+      }
+    }
+  ]
+}
