@@ -9,7 +9,9 @@ As of this writing, automated certificate generation is possible using Azure's K
 
 This extension is merely a front end for portions of Ryan's Bolger's Posh-ACME module (https://github.com/rmbolger/Posh-ACME).  It is intended to be part of a task group where a certificate is requested, stored in Key Vault and subsequent tasks or builds download the key/cert from Key Vault.  Toward that end, the extension supports tagging the Key Vault secret so that other tasks can identify the certificate.  Tagging is also useful to identify where the certificate is installed to add visibily and tracking information for renewals.
 
-Since this extension requires a custom Powershell module, it is intended to run on private (not hosted) VSTS agents.  There may be ways of installing the Posh-ACME module in a user context to enable using hosted agent, but that was beyond the scope of this exercise.
+This extension requires a custom Powershell module, you may run it on private (not hosted) VSTS agents, but if you wish to use an Azure hosted agent you will need to run this command first in the pipeline to install the Posh-ACME module:
+
+**Install-Module -Name Posh-ACME -force -Scope CurrentUser**
 
 Also, since there's no guarantee that this extension will always run on the same VSTS agent, it does not make sense to maintain a local history of each request.  Doing so would keep certificates in a local users appdata folder, which is harder to secure and maintain than storing them in Key Vault.  Therefore, this extension sets the $env:LOCALAPPDATA variable to the VSTS variable BUILD_STAGINGDIRECTORY.  This ensures that all certificates, requests, keys, etc. are deleted at the end of each build.
 
